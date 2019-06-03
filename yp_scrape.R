@@ -53,6 +53,8 @@ yp_scrape<-function(link){
   pn<-sapply(goodlinks,function(x) pipeit(x, ".phone"))
   wb<-sapply(goodlinks ,function(x) pipelink(x, ".website-link"))
   eml<-sapply(goodlinks,function(x)pipelink(x,".email-business"))
+              
+  Sys.sleep(sample(10, 1) * 0.1)
 
   tibble(Name=nms,Address=adr,"Phone Number"=pn,Website=wb,"Email"=eml)
 }
