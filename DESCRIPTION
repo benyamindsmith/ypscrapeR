@@ -1,0 +1,11 @@
+Package: ypscrapeR
+Title: Yellow pages web Scraper
+Version: 0.0.0.9000
+Authors@R: person("Benjamin", "Smith", email = "benyamindsmith@gmail.com", role = c("aut", "cre"))
+Description: A yellowpages data extractor. 
+Depends: R (>= 3.5.2)
+License: CC0
+Encoding: UTF-8
+LazyData: true
+Imports: rvest, xml2
+RoxygenNote: 6.1.1
