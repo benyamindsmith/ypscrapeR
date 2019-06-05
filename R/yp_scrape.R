@@ -50,20 +50,25 @@ yp_scrape<-function(link){
   
   newurls<-gsub(" ","",newurls)
   
-  hrfs<-sapply(newurls, function(x) pipelink(x,"#main-content .business-name"))
+  hrfs<-sapply(newurls, function(x) {Sys.sleep(sample(10, 1) * 0.1)
+                                   pipelink(x,"#main-content .business-name")})
   mainlink<-"https://www.yellowpages.com"
   goodlinks<-lapply(hrfs,function(y) unname(sapply(y,function(x) gsub(" ","",paste(mainlink,x)))))
   goodlinks<-unname(goodlinks)
   goodlinks<-unlist(goodlinks)
   
   ########Scraping########
-  nms<-sapply(goodlinks,function(x) pipeit(x,"h1"))
-  adr<-sapply(goodlinks,function(x) pipeit(x, ".address"))
-  pn<-sapply(goodlinks,function(x) pipeit(x, ".phone"))
-  wb<-sapply(goodlinks ,function(x) pipelink(x, ".website-link"))
-  eml<-sapply(goodlinks,function(x)pipelink(x,".email-business"))
+  nms<-sapply(goodlinks,function(x){Sys.sleep(sample(10, 1) * 0.1)
+                                    pipeit(x,"h1")})
+  adr<-sapply(goodlinks,function(x){ Sys.sleep(sample(10, 1) * 0.1)
+                                     pipeit(x, ".address")})
+  pn<-sapply(goodlinks,function(x) {Sys.sleep(sample(10, 1) * 0.1)
+                                      pipeit(x, ".phone")})
+  wb<-sapply(goodlinks ,function(x){ Sys.sleep(sample(10, 1) * 0.1)
+                                     pipelink(x, ".website-link")})
+  eml<-sapply(goodlinks,function(x) {Sys.sleep(sample(10, 1) * 0.1)
+                                      pipelink(x,".email-business")})
   
-  Sys.sleep(sample(10, 1) * 0.1)
   
   tibble(Name=nms,Address=adr,"Phone Number"=pn,Website=wb,"Email"=eml)
 }
