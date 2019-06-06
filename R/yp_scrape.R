@@ -13,8 +13,10 @@
 #'
 
 
+
 yp_scrape<-function(link){
   
+  options(timeout = 4000000)
   ###Required functions#####
   pipelink<-function(url,code){
     read_html(url)%>%html_nodes(code)%>%html_attr("href")
@@ -34,6 +36,10 @@ yp_scrape<-function(link){
     p<-length(pipelink(url,"#main-content .business-name"))
     n<-ceiling(n/p)
     n
+  }
+  
+  make_nice<-function(x){
+    x%>%vapply(paste,collapse=", ",character(1L))
   }
   ##########################
   ###Required Info########
@@ -70,5 +76,15 @@ yp_scrape<-function(link){
                                       pipelink(x,".email-business")})
   
   
-  tibble(Name=nms,Address=adr,"Phone Number"=pn,Website=wb,"Email"=eml)
+  
+  dt<-tibble(Name=nms,Address=adr,"Phone Number"=pn,Website=wb,"Email"=eml)
+  dt$Address<-make_nice(dt$Address)
+  dt$`Phone Number`<-make_nice(dt$`Phone Number`)
+  dt$Website<-make_nice(dt$Website)
+  dt$Email<-make_nice(dt$Email)
+  
+  options(timeout=10001)
+  
+  dt
+  
 }
