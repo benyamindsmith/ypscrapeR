@@ -57,4 +57,6 @@ With this, you should get the following output
 # … with 440 more rows
 ```
 
+Hope this is useful.
+
 Enjoy the package!
