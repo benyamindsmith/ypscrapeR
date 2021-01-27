@@ -15,7 +15,7 @@ This package is presently dependent on the `rvest` and `xml2` packages for scrap
 Based on the trouble I got into with the [sbscrapeR package](https://benyamindsmith.github.io/sbscrapeR/) I don't think I am going to submit this package quite yet to CRAN. But it can easily be accessed with the `devtools` package: 
 
 ```R
-devtools::install_github("benyamindsmith/ypscrapeR)
+devtools::install_github("benyamindsmith/ypscrapeR")
 ```
 
 
